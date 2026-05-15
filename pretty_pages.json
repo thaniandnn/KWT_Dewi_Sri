@@ -1,0 +1,216 @@
+[
+    {
+        "id": 63,
+        "tenant_id": 12,
+        "title": "Home",
+        "slug": "home",
+        "content": [
+            {
+                "id": "177882874780201d19il",
+                "type": "hero",
+                "data": {
+                    "headline": " Berdaya Bersama Dewi Sri",
+                    "sub_headline": "Menanam harapan, menuai masa depan. Kami adalah komunitas wanita tani yang berdedikasi untuk kedaulatan pangan dan kemandirian ekonomi melalui pertanian berkelanjutan.",
+                    "background_image": "https://drive.google.com/thumbnail?id=1qXNzbQ1T0pyRui5gaBRMPW8oorJ8vRTL&sz=w1200&t=1778828837680",
+                    "stats": [
+                        {
+                            "label": "",
+                            "value": ""
+                        }
+                    ]
+                }
+            },
+            {
+                "id": "1778832289579doav51a",
+                "type": "testimonials",
+                "data": {
+                    "title": "KETUA KELOMPOK",
+                    "items": [
+                        {
+                            "author_name": "A Ibu Hj. Siti Aminah",
+                            "author_role": "KETUA KELOMPOK",
+                            "author_image": null,
+                            "content": "Kami tidak hanya berkebun bersama, kami saling menguatkan. Setiap anggota membawa semangat yang luar biasa untuk kemajuan kelompok.",
+                            "rating": null
+                        },
+                        {
+                            "author_name": "Ibu Nurhayati",
+                            "author_role": "Anggota sejak 2018",
+                            "author_image": null,
+                            "content": "Yang paling berkesan adalah kebersamaannya. Kami seperti keluarga besar yang saling membantu dan mendukung satu sama lain.",
+                            "rating": null
+                        },
+                        {
+                            "author_name": "Ibu Wulandari",
+                            "author_role": "Anggota sejak 2018",
+                            "author_image": null,
+                            "content": "Dulu saya hanya mengandalkan suami. Sekarang saya punya penghasilan sendiri dari hasil kebun dan produk olahan bersama kelompok.\n",
+                            "rating": null
+                        }
+                    ]
+                }
+            },
+            {
+                "id": "1778838371691fzz7fjp",
+                "type": "activity-slider",
+                "data": {
+                    "title": "Kegiatan",
+                    "activities": [
+                        {
+                            "title": "Panen ",
+                            "image": "https://drive.google.com/thumbnail?id=1E0Z88L3oo6-SmvtDKuisDVHnvYh3PmFm&sz=w1200",
+                            "description": "Panen Nangka"
+                        },
+                        {
+                            "title": "KWT Dewi Sri",
+                            "image": "https://drive.google.com/thumbnail?id=1mQsK6gST2gxLZOHVIQ27Ufz3vSLG8r6l&sz=w1200",
+                            "description": "KWT Dewi Sri"
+                        },
+                        {
+                            "title": "Panen",
+                            "image": "https://drive.google.com/thumbnail?id=1mdhmwx9Pya-2pI4Dj4v9Dz11U3MsL88M&sz=w1200",
+                            "description": ""
+                        }
+                    ]
+                }
+            },
+            {
+                "id": "1778843182173oyn6dcu",
+                "type": "gallery",
+                "data": {
+                    "title": "Galeri Kegiatan",
+                    "subtitle": "Dokumentasi langkah nyata kami dalam memberdayakan komunitas dan menjaga kelestarian alam melalui berbagai program pertanian.",
+                    "images": [
+                        {
+                            "url": "https://drive.google.com/thumbnail?id=1R-tq-KMjUmCqi33foRteqyeJMLQ7c3e5&sz=w1200",
+                            "caption": "Panen Melon",
+                            "alt_text": null,
+                            "category": null,
+                            "image_title": null,
+                            "description": null,
+                            "location": null,
+                            "time": null,
+                            "button_label": null,
+                            "button_url": null
+                        },
+                        {
+                            "url": "https://drive.google.com/thumbnail?id=1vx6wcY5-xz7ygDvOdAAPbdITxGILBXcg&sz=w1200",
+                            "caption": "Sosialisasi Aquaponik",
+                            "alt_text": null,
+                            "category": null,
+                            "image_title": null,
+                            "description": null,
+                            "location": null,
+                            "time": null,
+                            "button_label": null,
+                            "button_url": null
+                        },
+                        {
+                            "url": "https://drive.google.com/thumbnail?id=1oVgtiUe4SJLQPP6VWBtRKALQKHXmirDN&sz=w1200",
+                            "caption": "Anggota KWT Dewi Sri",
+                            "alt_text": null,
+                            "category": null,
+                            "image_title": null,
+                            "description": null,
+                            "location": null,
+                            "time": null,
+                            "button_label": null,
+                            "button_url": null
+                        },
+                        {
+                            "url": "https://drive.google.com/thumbnail?id=1Si_h8ep2VVceqHXthFhlt3gdxtzTO0oO&sz=w1200",
+                            "caption": "Ibu ibu Mengangkut Rangka",
+                            "alt_text": null,
+                            "category": null,
+                            "image_title": null,
+                            "description": null,
+                            "location": null,
+                            "time": null,
+                            "button_label": null,
+                            "button_url": null
+                        },
+                        {
+                            "url": "https://drive.google.com/thumbnail?id=1IKyJlCYpC2iha9lqSuCOeVnZRshoZhga&sz=w1200",
+                            "caption": "Menyiram Tanaman",
+                            "alt_text": null,
+                            "category": null,
+                            "image_title": null,
+                            "description": null,
+                            "location": null,
+                            "time": null,
+                            "button_label": null,
+                            "button_url": null
+                        },
+                        {
+                            "url": "https://drive.google.com/thumbnail?id=12ZrhmxpfhF1Ts9q9abUdJiIVllz_Qz25&sz=w1200",
+                            "caption": "Panen Nangka",
+                            "alt_text": null,
+                            "category": null,
+                            "image_title": null,
+                            "description": null,
+                            "location": null,
+                            "time": null,
+                            "button_label": null,
+                            "button_url": null
+                        },
+                        {
+                            "url": "https://drive.google.com/thumbnail?id=10sFihxDdyv1j7pOAg7rQmAygZe-aEBF_&sz=w1200",
+                            "caption": "Acara di Telkom University",
+                            "alt_text": null,
+                            "category": null,
+                            "image_title": null,
+                            "description": null,
+                            "location": null,
+                            "time": null,
+                            "button_label": null,
+                            "button_url": null
+                        },
+                        {
+                            "url": "https://drive.google.com/thumbnail?id=1mdhmwx9Pya-2pI4Dj4v9Dz11U3MsL88M&sz=w1200",
+                            "caption": "Panen Pakcoy",
+                            "alt_text": null,
+                            "category": null,
+                            "image_title": null,
+                            "description": null,
+                            "location": null,
+                            "time": null,
+                            "button_label": null,
+                            "button_url": null
+                        },
+                        {
+                            "url": "https://drive.google.com/thumbnail?id=1E0Z88L3oo6-SmvtDKuisDVHnvYh3PmFm&sz=w1200",
+                            "caption": "Piket Kamis",
+                            "alt_text": null,
+                            "category": null,
+                            "image_title": null,
+                            "description": null,
+                            "location": null,
+                            "time": null,
+                            "button_label": null,
+                            "button_url": null
+                        },
+                        {
+                            "url": "https://drive.google.com/thumbnail?id=1FPvO8yTCxdeWfXpWXeJ5AtTL1RX30USg&sz=w1200",
+                            "caption": "Sosialisasi Aquaponik",
+                            "alt_text": null,
+                            "category": null,
+                            "image_title": null,
+                            "description": null,
+                            "location": null,
+                            "time": null,
+                            "button_label": null,
+                            "button_url": null
+                        }
+                    ]
+                }
+            }
+        ],
+        "status": "published",
+        "author_id": null,
+        "created_at": "2026-05-15T07:06:55.000Z",
+        "updated_at": "2026-05-15T11:15:25.000Z",
+        "is_in_navbar": 1,
+        "priority": 1,
+        "is_contact_form_active": true
+    }
+]
