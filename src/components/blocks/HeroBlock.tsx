@@ -18,7 +18,7 @@ const FALLBACK_IMAGES = [
 
 const DEFAULT_STATS = [
   { label: 'Anggota Aktif', value: '50+', icon: Users },
-  { label: 'Tahun Berdiri', value: '2018', icon: Calendar },
+  { label: 'Tahun Berdiri', value: '2016', icon: Calendar },
   { label: 'Produk UMKM', value: '12+', icon: ShoppingBag },
   { label: 'Penghargaan', value: '3+', icon: Award },
 ];

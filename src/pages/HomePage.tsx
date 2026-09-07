@@ -298,7 +298,7 @@ const HeroSection = () => {
 const StatsBar = () => {
   const stats = [
     { label: 'Anggota Aktif', value: '50+', icon: Users },
-    { label: 'Tahun Berdiri', value: '2018', icon: Calendar },
+    { label: 'Tahun Berdiri', value: '2016', icon: Calendar },
     { label: 'Produk UMKM', value: '12+', icon: ShoppingBag },
     { label: 'Penghargaan', value: '3+', icon: Award },
   ];
@@ -421,13 +421,13 @@ const ProfileSection = () => {
                   <span className="text-white text-xs lg:text-base font-bold font-playfair">
                     KWT Dewi Sri · Bojongsoang
                   </span>
-                  <span className="text-white/80 text-[10px] lg:text-xs font-bold tracking-widest uppercase">Est. 2018</span>
+                  <span className="text-white/80 text-[10px] lg:text-xs font-bold tracking-widest uppercase">Est. 2016</span>
                 </div>
               </div>
 
               {/* Badge floating — pojok kanan atas */}
               <div className="absolute -top-2 -right-2 lg:-top-4 lg:-right-4 z-20 bg-black text-white px-3 py-1.5 lg:px-5 lg:py-2.5 rounded-full text-[10px] lg:text-sm font-bold uppercase tracking-widest border border-kwt-lime/40 shadow-xl">
-                ✦ Sejak 2018
+                ✦ Sejak 2016
               </div>
             </div>
           </motion.div>

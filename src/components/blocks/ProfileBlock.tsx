@@ -184,14 +184,14 @@ export const ProfileBlock: React.FC<ProfileBlockProps> = ({
                     KWT Dewi Sri · Bojongsoang
                   </span>
                   <span className="text-white/80 text-[10px] lg:text-xs font-bold tracking-widest uppercase">
-                    Est. 2018
+                    Est. 2016
                   </span>
                 </div>
               </div>
 
               {/* Floating badge top right */}
               <div className="absolute -top-2 -right-2 lg:-top-4 lg:-right-4 z-20 bg-black text-white px-3 py-1.5 lg:px-5 lg:py-2.5 rounded-full text-[10px] lg:text-sm font-bold uppercase tracking-widest border border-kwt-lime/40 shadow-xl">
-                ✦ Sejak 2018
+                ✦ Sejak 2016
               </div>
             </div>
           </motion.div>
