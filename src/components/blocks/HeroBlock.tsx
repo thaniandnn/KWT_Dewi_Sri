@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { ChevronLeft, ChevronRight, Users, Calendar, ShoppingBag, Award } from 'lucide-react';
 import { Button } from '../ui/Button';
-import type { HeroBlockData, ActivitySliderBlockData } from '../../lib/types';
+import type { HeroBlockData, ActivitySliderBlockData, FeaturesBlockData } from '../../lib/types';
 
 interface HeroBlockProps {
   data: HeroBlockData;
   activityData?: ActivitySliderBlockData;
+  featuresData?: FeaturesBlockData;
 }
 
 const FALLBACK_IMAGES = [
@@ -22,7 +23,16 @@ const DEFAULT_STATS = [
   { label: 'Penghargaan', value: '3+', icon: Award },
 ];
 
-export const HeroBlock: React.FC<HeroBlockProps> = ({ data, activityData }) => {
+const getStatIcon = (label?: string, index: number = 0) => {
+  const l = (label || '').toLowerCase();
+  if (l.includes('anggota') || l.includes('member') || l.includes('petani') || l.includes('orang')) return Users;
+  if (l.includes('tahun') || l.includes('berdiri') || l.includes('sejak') || l.includes('date') || l.includes('year')) return Calendar;
+  if (l.includes('produk') || l.includes('umkm') || l.includes('hasil') || l.includes('tani') || l.includes('jual') || l.includes('panen') || l.includes('olahan')) return ShoppingBag;
+  if (l.includes('penghargaan') || l.includes('prestasi') || l.includes('award') || l.includes('juara')) return Award;
+  return DEFAULT_STATS[index % DEFAULT_STATS.length]?.icon ?? Users;
+};
+
+export const HeroBlock: React.FC<HeroBlockProps> = ({ data, activityData, featuresData }) => {
   const { scrollY } = useScroll();
   const yBg = useTransform(scrollY, [0, 1000], [0, 300]);
   const [current, setCurrent] = useState(0);
@@ -42,15 +52,25 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({ data, activityData }) => {
     }));
   }
 
-  // Stats dari CMS jika nilai tidak kosong, fallback ke default
-  const hasStats = data.stats?.some((s) => s.value && s.value.trim() !== '');
-  const cmsStats = hasStats
+  // Stats dari featuresData CMS (jika ada), atau dari data.stats, atau fallback DEFAULT_STATS
+  const hasFeaturesStats = featuresData?.items && featuresData.items.length > 0 && featuresData.items.some(it => it.title || it.description);
+  const hasHeroStats = data.stats?.some((s) => s.value && s.value.trim() !== '');
+
+  const cmsStats = hasFeaturesStats
+    ? featuresData!.items!.map((it, i) => ({
+        label: it.description || it.title || '',
+        value: it.title || '',
+        icon: getStatIcon(it.description || it.title, i),
+        icon_url: it.icon_url || null,
+      }))
+    : hasHeroStats
     ? data.stats!.filter((s) => s.value?.trim()).map((s, i) => ({
         label: s.label,
         value: s.value,
-        icon: DEFAULT_STATS[i]?.icon ?? Users,
+        icon: getStatIcon(s.label, i),
+        icon_url: null,
       }))
-    : DEFAULT_STATS;
+    : DEFAULT_STATS.map(s => ({ ...s, icon_url: null }));
 
   useEffect(() => {
     if (isHovered) return;
@@ -159,7 +179,11 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({ data, activityData }) => {
             {cmsStats.map((stat, index) => (
               <motion.div key={index} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1, duration: 0.5 }} className="text-center text-kwt-maroon">
                 <div className="flex justify-center mb-3">
-                  <stat.icon className="w-8 h-8 opacity-40 text-kwt-maroon" />
+                  {stat.icon_url ? (
+                    <img src={stat.icon_url} alt="" className="w-8 h-8 object-contain opacity-60" />
+                  ) : (
+                    <stat.icon className="w-8 h-8 opacity-40 text-kwt-maroon" />
+                  )}
                 </div>
                 <h3 className="font-playfair text-3xl font-bold mb-1">{stat.value}</h3>
                 <p className="text-[10px] md:text-sm font-dm opacity-60 uppercase tracking-widest">{stat.label}</p>

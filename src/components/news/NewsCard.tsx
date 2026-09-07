@@ -10,7 +10,7 @@ export const NewsCard: React.FC<{ news: NewsItem }> = ({ news }) => {
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:-translate-y-1 hover:shadow-md transition-all duration-200 group flex flex-col"
+      className="bg-[#FAF9F5] rounded-[24px] overflow-hidden border border-gray-200/90 shadow-[0_8px_25px_-8px_rgba(0,0,0,0.04)] hover:-translate-y-1.5 hover:shadow-[0_20px_45px_-12px_rgba(240,93,35,0.14)] hover:border-kwt-orange/40 transition-all duration-300 group flex flex-col justify-between"
     >
       {/* Photo */}
       <div className="relative h-[160px] overflow-hidden bg-kwt-offwhite">

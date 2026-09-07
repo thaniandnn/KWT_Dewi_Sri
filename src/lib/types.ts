@@ -101,7 +101,18 @@ export interface ContactsBlockData {
 
 export interface FeaturesBlockData {
   title?: string;
-  items?: Array<{ id: string; title: string; description: string; icon?: string }>;
+  subtitle?: string;
+  items?: Array<{
+    id?: string;
+    title?: string;
+    description?: string;
+    icon_url?: string | null;
+    link_url?: string | null;
+    labels?: string[];
+    alamat?: string | null;
+    icon?: string;
+    [key: string]: unknown;
+  }>;
   [key: string]: unknown;
 }
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getPageSafe } from '../lib/cmsApi';
 import type { CmsPage } from '../lib/types';
 import { BlockRenderer } from '../components/blocks/BlockRenderer';
+import { FacilitiesCommitmentBlock } from '../components/blocks/FacilitiesCommitmentBlock';
 import { motion, useScroll, useTransform, AnimatePresence } from 'motion/react';
 import { 
   Users, 
@@ -836,6 +837,7 @@ export const HomePage = () => {
       <HeroSection />
       <StatsBar />
       <ProfileSection />
+      <FacilitiesCommitmentBlock />
       <GallerySection />
       <NewsSection />
       <ContactSection />

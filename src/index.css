@@ -59,3 +59,117 @@
     display: none;
   }
 }
+
+/* Custom Rich Text Styling for Profil Kelompok Section */
+.rich-text-profile h1,
+.rich-text-profile h2 {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  color: #1A1A1A;
+  line-height: 1.15;
+  margin-bottom: 0.25rem;
+  font-size: 2.25rem;
+}
+
+@media (min-width: 768px) {
+  .rich-text-profile h1,
+  .rich-text-profile h2 {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .rich-text-profile h1,
+  .rich-text-profile h2 {
+    font-size: 3.5rem;
+  }
+}
+
+/* Consecutive heading / second heading (e.g. "Wanita Tani") gets lime green italic accent */
+.rich-text-profile h1:nth-of-type(2),
+.rich-text-profile h2:nth-of-type(2),
+.rich-text-profile h1 + h1,
+.rich-text-profile h2 + h2 {
+  color: #8da136 !important;
+  font-style: italic !important;
+  font-weight: 600 !important;
+  margin-bottom: 1.25rem;
+}
+
+.rich-text-profile h1:nth-of-type(2) *,
+.rich-text-profile h2:nth-of-type(2) *,
+.rich-text-profile h1 + h1 *,
+.rich-text-profile h2 + h2 * {
+  color: inherit !important;
+  font-style: inherit !important;
+}
+
+.rich-text-profile p {
+  font-family: var(--font-sans);
+  color: #4B5563;
+  font-size: 0.95rem;
+  line-height: 1.75;
+  margin-bottom: 1.15rem;
+}
+
+@media (min-width: 768px) {
+  .rich-text-profile p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+}
+
+.rich-text-profile p:last-child {
+  margin-bottom: 0;
+}
+
+.rich-text-profile p:empty {
+  display: none;
+  height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.rich-text-profile strong {
+  font-weight: 700;
+  color: #1A1A1A;
+}
+
+.rich-text-profile em {
+  font-style: italic;
+}
+
+.rich-text-profile u {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.rich-text-profile ul {
+  list-style-type: disc;
+  margin-left: 1.25rem;
+  margin-bottom: 1rem;
+  color: #4B5563;
+}
+
+.rich-text-profile ol {
+  list-style-type: decimal;
+  margin-left: 1.25rem;
+  margin-bottom: 1rem;
+  color: #4B5563;
+}
+
+.rich-text-profile li {
+  margin-bottom: 0.25rem;
+}
+
+.rich-text-profile a {
+  color: #F05D23;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: opacity 0.2s;
+}
+
+.rich-text-profile a:hover {
+  opacity: 0.8;
+}
+

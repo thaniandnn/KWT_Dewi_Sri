@@ -1,6 +1,11 @@
 import React from 'react';
 import type { CmsBlock } from '../../lib/types';
 import { HeroBlock } from './HeroBlock';
+import { ProfileBlock, cleanRichTextHtml } from './ProfileBlock';
+import { VisiMisiBlock } from './VisiMisiBlock';
+import { FacilitiesCommitmentBlock } from './FacilitiesCommitmentBlock';
+import { AchievementsBlock } from './AchievementsBlock';
+import { BusinessActivitiesBlock } from './BusinessActivitiesBlock';
 import { NewsCard } from '../news/NewsCard';
 import { newsData } from '../../data/newsData';
 import { ChevronRight } from 'lucide-react';
@@ -32,13 +37,13 @@ const PlaceholderBlock: React.FC<{ block: CmsBlock }> = ({ block }) => (
   </section>
 );
 
-// ---------- RichText Block ----------
+// ---------- Standalone RichText Block (Fallback) ----------
 
 const RichTextBlock: React.FC<{ data: RichTextBlockData }> = ({ data }) => (
   <section className="py-16 px-6 bg-kwt-offwhite">
     <div
-      className="max-w-4xl mx-auto prose prose-lg prose-headings:font-playfair prose-headings:text-kwt-maroon"
-      dangerouslySetInnerHTML={{ __html: data.content ?? '' }}
+      className="max-w-4xl mx-auto rich-text-profile"
+      dangerouslySetInnerHTML={{ __html: cleanRichTextHtml(data.content ?? '') }}
     />
   </section>
 );
@@ -240,129 +245,6 @@ const FaqBlock: React.FC<{ data: FaqBlockData }> = ({ data }) => {
   );
 };
 
-// ---------- Testimonials Block (Profile + Slider) ----------
-
-const TestimonialsBlock: React.FC<{ data: TestimonialsBlockData }> = ({ data }) => {
-  const [current, setCurrent] = React.useState(0);
-  const testimonials = data.items && data.items.length > 0 ? data.items : [
-    { id: '1', category: "Anggota Aktif", quote: "Bergabung dengan KWT Dewi Sri mengubah cara pandang saya tentang bertani. Saya belajar banyak hal baru dan kini lebih mandiri secara ekonomi.", name: "Ibu Suryati", role: "Anggota sejak 2019" },
-    { id: '2', category: "Ketua Kelompok", quote: "Kami tidak hanya berkebun bersama, kami saling menguatkan. Setiap anggota membawa semangat yang luar biasa untuk kemajuan kelompok.", name: "Ibu Hj. Siti Aminah", role: "Ketua KWT Dewi Sri" },
-    { id: '3', category: "Program Pelatihan", quote: "Pelatihan yang diberikan sangat bermanfaat. Saya jadi tahu cara mengolah hasil panen menjadi produk bernilai jual tinggi.", name: "Ibu Ratna", role: "Anggota sejak 2020" },
-    { id: '4', category: "Dampak Ekonomi", quote: "Dulu saya hanya mengandalkan suami. Sekarang saya punya penghasilan sendiri dari hasil kebun dan produk olahan bersama kelompok.", name: "Ibu Wulandari", role: "Anggota sejak 2021" },
-    { id: '5', category: "Kebersamaan", quote: "Yang paling berkesan adalah kebersamaannya. Kami seperti keluarga besar yang saling membantu dan mendukung satu sama lain.", name: "Ibu Nurhayati", role: "Anggota sejak 2018" }
-  ];
-
-  React.useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % testimonials.length);
-    }, 6000);
-    return () => clearInterval(timer);
-  }, [testimonials.length]);
-
-  return (
-    <section id="profile" className="relative bg-[#FBFBFA] pt-12 pb-24 lg:pt-16 lg:pb-32 overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden opacity-40">
-        <div className="absolute top-[-10%] right-[-5%] w-[40%] h-[60%] rounded-full bg-kwt-lime/10 blur-[120px]" />
-        <div className="absolute bottom-[-10%] left-[-5%] w-[40%] h-[60%] rounded-full bg-kwt-orange/10 blur-[120px]" />
-        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")` }} />
-      </div>
-
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          
-          {/* Left: Stacked Depth Frame */}
-          <div className="relative group w-full max-w-[480px] mx-auto lg:mx-0 order-2 lg:order-1 pr-6 pb-6 pt-2 lg:pt-0">
-            <div className="relative aspect-[4/5] sm:aspect-square lg:aspect-[4/5]">
-              <div className="absolute top-4 left-4 lg:top-8 lg:left-8 w-full h-full rounded-2xl bg-kwt-lime/30 border border-kwt-lime/40 transition-all duration-500 lg:group-hover:top-10 lg:group-hover:left-10" />
-              <div className="absolute top-2 left-2 lg:top-4 lg:left-4 w-full h-full rounded-2xl bg-kwt-orange/20 border border-kwt-orange/30 shadow-xl transition-all duration-500 lg:group-hover:top-5 lg:group-hover:left-5" />
-              <div className="absolute top-0 left-0 w-full h-full rounded-2xl overflow-hidden shadow-2xl shadow-black/40 border border-white/10 transition-all duration-500 lg:group-hover:shadow-black/60">
-                <img 
-                  src={(data as any).image ?? "/foto-anggota-kwt-dewisri.jpg"} 
-                  alt="Kegiatan KWT Dewi Sri" 
-                  className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-80" />
-                <div className="absolute bottom-0 left-0 right-0 bg-kwt-orange px-4 py-3 lg:px-6 lg:py-4 flex items-center justify-between">
-                  <span className="text-white text-xs lg:text-base font-bold font-playfair">KWT Dewi Sri · Bojongsoang</span>
-                  <span className="text-white/80 text-[10px] lg:text-xs font-bold tracking-widest uppercase">Est. 2018</span>
-                </div>
-              </div>
-              <div className="absolute -top-2 -right-2 lg:-top-4 lg:-right-4 z-20 bg-black text-white px-3 py-1.5 lg:px-5 lg:py-2.5 rounded-full text-[10px] lg:text-sm font-bold uppercase tracking-widest border border-kwt-lime/40 shadow-xl">
-                ✦ Sejak 2018
-              </div>
-            </div>
-          </div>
-
-          {/* Right: Info Content with Carousel Slider */}
-          <div className="flex flex-col order-1 lg:order-2 lg:pl-10">
-            <div>
-              <div className="flex items-center gap-4 mb-6">
-                <div className="h-[3px] w-14 bg-kwt-orange" />
-                <span className="text-kwt-orange text-sm font-black uppercase tracking-[0.6em]">The Collective</span>
-                <div className="h-[1px] flex-1 bg-gray-100" />
-              </div>
-              <h2 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold text-[#1A1A1A] mb-4 leading-tight">
-                <span className="text-black">Profil Kelompok</span><br /><span className="text-kwt-lime italic font-semibold">Wanita Tani</span>
-              </h2>
-              <p className="text-gray-500 font-dm text-base md:text-lg leading-relaxed mb-8 lg:mb-10 max-w-xl">
-                Kelompok Wanita Tani (KWT) Dewi Sri 09 GBA 2 Bojongsoang, Kabupaten Bandung, merupakan komunitas perempuan pelaku UMKM yang aktif dalam memproduksi dan memasarkan hasil pertanian serta kerajinan lokal.
-              </p>
-            </div>
-
-            {/* Widget Carousel Slider */}
-            <div className="relative min-h-[380px] sm:min-h-[340px] lg:min-h-[380px] mt-12 mb-20 lg:mt-0 lg:mb-8">
-              <div className="absolute inset-0">
-                <div className="relative overflow-hidden p-6 sm:p-8 lg:p-12 rounded-[28px] lg:rounded-[30px] bg-white border border-gray-100 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.08)] group cursor-default h-full flex flex-col justify-center">
-                  <div className="relative z-10 flex flex-col gap-6">
-                    <div>
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="w-2 h-2 rounded-full bg-kwt-lime" />
-                        <h4 className="font-dm text-xs font-black text-gray-400 uppercase tracking-[0.3em]">
-                          {(testimonials[current] as any).category || "Testimonial"}
-                        </h4>
-                      </div>
-                      <p className="font-playfair text-xl lg:text-2xl font-bold text-black leading-tight mb-6 italic">
-                        "{testimonials[current].content || testimonials[current].quote}"
-                      </p>
-                      <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
-                        <div className="w-8 h-8 lg:w-10 lg:h-10 rounded-full bg-kwt-orange/15 flex items-center justify-center text-kwt-orange text-xs lg:text-sm font-bold shrink-0">
-                          {(testimonials[current].author_name || testimonials[current].name || 'A').charAt(0).toUpperCase()}
-                        </div>
-                        <div>
-                          <p className="text-sm lg:text-base font-semibold text-black">{testimonials[current].author_name || testimonials[current].name || 'Anonim'}</p>
-                          <p className="text-xs text-gray-400">{testimonials[current].author_role || testimonials[current].role || ''}</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Slider Controls */}
-              <div className="absolute -bottom-14 lg:-bottom-16 left-0 right-0 flex items-center justify-between px-2 z-20">
-                <div className="flex gap-2">
-                  {testimonials.map((_, index) => (
-                    <button key={index} onClick={() => setCurrent(index)} className={`h-1.5 transition-all duration-500 rounded-full ${index === current ? 'w-10 bg-kwt-orange' : 'w-2 bg-gray-200'}`} />
-                  ))}
-                </div>
-                <div className="flex gap-3 lg:gap-4">
-                  <button onClick={() => setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length)} className="w-10 h-10 lg:w-12 lg:h-12 rounded-full border border-gray-200 flex items-center justify-center hover:bg-black hover:text-white bg-white transition-all shadow-sm">
-                    <span className="text-xl leading-none">‹</span>
-                  </button>
-                  <button onClick={() => setCurrent((prev) => (prev + 1) % testimonials.length)} className="w-10 h-10 lg:w-12 lg:h-12 rounded-full border border-gray-200 flex items-center justify-center hover:bg-black hover:text-white bg-white transition-all shadow-sm">
-                    <span className="text-xl leading-none">›</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
 // ---------- Team Members Block ----------
 
 const TeamMembersBlock: React.FC<{ data: TeamMembersBlockData }> = ({ data }) => (
@@ -455,28 +337,35 @@ const DynamicPostFeedBlock: React.FC<{ data: DynamicPostFeedBlockData }> = ({ da
 
   if (loading) {
     return (
-      <section className="bg-kwt-offwhite py-24 px-6 flex justify-center items-center">
+      <section className="bg-white py-24 px-6 flex justify-center items-center border-t border-gray-200/80">
         <div className="animate-pulse flex flex-col items-center gap-4">
-          <div className="w-8 h-8 border-4 border-kwt-maroon border-t-transparent rounded-full animate-spin"></div>
-          <p className="text-kwt-maroon/60 font-dm text-sm">Memuat artikel terbaru...</p>
+          <div className="w-8 h-8 border-4 border-kwt-orange border-t-transparent rounded-full animate-spin"></div>
+          <p className="text-gray-500 font-dm text-sm">Memuat artikel terbaru...</p>
         </div>
       </section>
     );
   }
 
   return (
-    <section id="news" className="bg-kwt-offwhite py-24 px-6">
+    <section id="news" className="bg-white py-20 lg:py-28 px-6 lg:px-12 border-t border-gray-200/80 relative">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-8 lg:mb-12 text-center max-w-2xl mx-auto">
-          <h2 className="font-playfair text-4xl md:text-5xl font-bold text-kwt-maroon mb-4">
+        <div className="mb-12 lg:mb-16 text-center max-w-2xl mx-auto">
+          <div className="inline-flex items-center gap-2.5 bg-[#F8F8F3] border border-gray-200 px-4 py-1.5 rounded-full shadow-sm mb-4">
+            <div className="w-2 h-2 rounded-full bg-kwt-orange animate-pulse" />
+            <span className="text-kwt-orange text-xs font-black uppercase tracking-[0.35em]">
+              Kabar Terbaru
+            </span>
+          </div>
+
+          <h2 className="font-playfair text-4xl sm:text-5xl font-bold text-[#1A1A1A] mb-4 leading-tight">
             {data.title || "Warta Terkini"}
           </h2>
-          <p className="text-kwt-maroon/60 font-dm text-sm md:text-base leading-relaxed">
+          <p className="text-gray-600 font-dm text-sm sm:text-base leading-relaxed">
             {data.subtitle || "Update terbaru mengenai program, prestasi, dan kegiatan harian anggota KWT Dewi Sri di lapangan."}
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {posts.length > 0 ? (
             posts.map((item) => (
               <NewsCard key={item.id} news={item} />
@@ -486,9 +375,9 @@ const DynamicPostFeedBlock: React.FC<{ data: DynamicPostFeedBlockData }> = ({ da
           )}
         </div>
 
-        <div className="flex justify-center mt-10 lg:mt-12">
+        <div className="flex justify-center mt-12 lg:mt-14">
           <Link to="/news">
-            <button className="group inline-flex items-center gap-3 border border-kwt-maroon/30 text-kwt-maroon px-8 py-3.5 rounded-full text-sm font-bold tracking-wide uppercase bg-transparent hover:bg-kwt-maroon hover:text-white hover:border-kwt-maroon hover:-translate-y-1 active:scale-95 transition-all duration-300">
+            <button className="group inline-flex items-center gap-3 border border-gray-300 text-[#1A1A1A] px-8 py-3.5 rounded-full text-xs font-bold tracking-widest uppercase bg-[#F8F8F3] hover:bg-black hover:text-white hover:border-black hover:-translate-y-1 active:scale-95 transition-all duration-300 shadow-sm">
               Lihat Semua Berita
               <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
@@ -514,44 +403,176 @@ export const BlockRenderer: React.FC<BlockRendererProps> = ({ blocks }) => {
     );
   }
 
+  // Identify specific blocks
+  const richTextBlocks = blocks.filter(b => b.type === 'rich-text' || b.type === 'rich_text');
+  
+  const profileRichTextBlock = richTextBlocks.find(b => {
+    const c = (b.data as any)?.content?.toLowerCase() || '';
+    return c.includes('profil kelompok') || (!c.includes('visi') && !c.includes('komitmen'));
+  }) || richTextBlocks[0];
+
+  const visiMisiRichTextBlock = richTextBlocks.find(b => {
+    const c = (b.data as any)?.content?.toLowerCase() || '';
+    return (c.includes('visi') || c.includes('misi')) && b.id !== profileRichTextBlock?.id;
+  });
+
+  const commitmentRichTextBlock = richTextBlocks.find(b => {
+    const c = (b.data as any)?.content?.toLowerCase() || '';
+    return c.includes('komitmen') && b.id !== profileRichTextBlock?.id && b.id !== visiMisiRichTextBlock?.id;
+  });
+
+  const featuresBlocks = blocks.filter(b => b.type === 'features');
+  
+  // Stats block (shown in Hero)
+  const statsFeaturesBlock = featuresBlocks.find(b => {
+    const t = (b.data as any)?.title?.toLowerCase() || '';
+    const s = (b.data as any)?.subtitle?.toLowerCase() || '';
+    return t.includes('profil') || s.includes('informasi');
+  }) || featuresBlocks[0];
+
+  // Facilities block
+  const facilitiesFeaturesBlock = featuresBlocks.find(b => {
+    const t = (b.data as any)?.title?.toLowerCase() || '';
+    const s = (b.data as any)?.subtitle?.toLowerCase() || '';
+    return t.includes('fasilitas') || s.includes('fasilitas');
+  }) || (featuresBlocks.length > 1 ? featuresBlocks.find(b => b.id !== statsFeaturesBlock?.id) : null);
+
+  // Prestasi / Achievements block
+  const prestasiFeaturesBlock = featuresBlocks.find(b => {
+    const t = (b.data as any)?.title?.toLowerCase() || '';
+    const s = (b.data as any)?.subtitle?.toLowerCase() || '';
+    return (t.includes('prestasi') || s.includes('prestasi') || t.includes('pencapaian')) && b.id !== statsFeaturesBlock?.id && b.id !== facilitiesFeaturesBlock?.id;
+  });
+
+  const prestasiRichTextBlock = richTextBlocks.find(b => {
+    const c = (b.data as any)?.content?.toLowerCase() || '';
+    return (c.includes('prestasi') || c.includes('skripsi') || c.includes('innovillage')) && b.id !== profileRichTextBlock?.id && b.id !== visiMisiRichTextBlock?.id && b.id !== commitmentRichTextBlock?.id;
+  });
+
+  // Bidang Usaha & Kegiatan Utama block
+  const bidangUsahaFeaturesBlock = featuresBlocks.find(b => {
+    const t = (b.data as any)?.title?.toLowerCase() || '';
+    const s = (b.data as any)?.subtitle?.toLowerCase() || '';
+    return (t.includes('bidang usaha') || t.includes('kegiatan utama') || s.includes('bidang usaha')) && b.id !== statsFeaturesBlock?.id && b.id !== facilitiesFeaturesBlock?.id && b.id !== prestasiFeaturesBlock?.id;
+  });
+
+  const bidangUsahaRichTextBlock = richTextBlocks.find(b => {
+    const c = (b.data as any)?.content?.toLowerCase() || '';
+    return (c.includes('bidang usaha') || c.includes('budidaya tanaman')) && b.id !== profileRichTextBlock?.id && b.id !== visiMisiRichTextBlock?.id && b.id !== commitmentRichTextBlock?.id && b.id !== prestasiRichTextBlock?.id;
+  });
+
+  const testimonialsBlock = blocks.find(b => b.type === 'testimonials');
+  const heroBlocks = blocks.filter(b => b.type === 'hero');
+  const mainHeroBlock = heroBlocks[0];
+
+  // Secondary hero blocks (e.g. Kegiatan Utama, Kolaborasi)
+  const programHeroBlocks = heroBlocks.slice(1).map(b => ({
+    id: b.id,
+    headline: (b.data as any)?.headline || '',
+    sub_headline: (b.data as any)?.sub_headline || '',
+    labels: (b.data as any)?.labels || []
+  }));
+
   return (
     <>
       {blocks.map((block) => {
-        switch (block.type) {
+        const normalizedType = block.type.replace(/-/g, '_');
+
+        switch (normalizedType) {
           case 'hero': {
+            // Only render the main top Hero as HeroBlock; secondary hero blocks are merged into VisiMisiBlock
+            if (block.id !== mainHeroBlock?.id) {
+              return null;
+            }
+
             const activitySliderBlock = blocks.find(b => b.type === 'activity-slider' || b.type === 'activity_slider');
-            return <HeroBlock key={block.id} data={block.data as HeroBlockData} activityData={activitySliderBlock?.data as ActivitySliderBlockData} />;
+            return (
+              <HeroBlock
+                key={block.id}
+                data={block.data as HeroBlockData}
+                activityData={activitySliderBlock?.data as ActivitySliderBlockData}
+                featuresData={statsFeaturesBlock?.data as FeaturesBlockData}
+              />
+            );
           }
 
-          case 'rich_text':
-            return <RichTextBlock key={block.id} data={block.data as RichTextBlockData} />;
+          case 'testimonials':
+            return (
+              <React.Fragment key={block.id}>
+                <ProfileBlock
+                  testimonialsData={block.data as TestimonialsBlockData}
+                  richTextData={profileRichTextBlock?.data as RichTextBlockData}
+                />
+                {visiMisiRichTextBlock && (
+                  <VisiMisiBlock
+                    data={visiMisiRichTextBlock.data as RichTextBlockData}
+                    programsData={programHeroBlocks}
+                  />
+                )}
+                <AchievementsBlock data={prestasiFeaturesBlock?.data || prestasiRichTextBlock?.data} />
+                <FacilitiesCommitmentBlock
+                  facilitiesData={facilitiesFeaturesBlock?.data as FeaturesBlockData}
+                  commitmentData={commitmentRichTextBlock?.data as RichTextBlockData}
+                />
+              </React.Fragment>
+            );
+
+          case 'rich_text': {
+            // If already merged into ProfileBlock or VisiMisiBlock, skip standalone rendering
+            if (testimonialsBlock) {
+              return null;
+            }
+
+            // Standalone rendering fallback
+            const content = (block.data as any)?.content?.toLowerCase() || '';
+            if (content.includes('visi')) {
+              return (
+                <VisiMisiBlock
+                  key={block.id}
+                  data={block.data as RichTextBlockData}
+                  programsData={programHeroBlocks}
+                />
+              );
+            }
+
+            return (
+              <ProfileBlock
+                key={block.id}
+                richTextData={block.data as RichTextBlockData}
+              />
+            );
+          }
+
+          case 'activity_slider':
+            // Activity slider is rendered inside HeroBlock, so we don't render it as a standalone block.
+            return null;
+
+          case 'gallery':
+            return (
+              <React.Fragment key={block.id}>
+                <GalleryBlock data={block.data as GalleryBlockData} />
+                <BusinessActivitiesBlock data={bidangUsahaFeaturesBlock?.data || bidangUsahaRichTextBlock?.data} />
+              </React.Fragment>
+            );
+
+          case 'dynamic_post_feed':
+            return <DynamicPostFeedBlock key={block.id} data={block.data as DynamicPostFeedBlockData} />;
 
           case 'contacts':
             return <ContactsBlock key={block.id} data={block.data as ContactsBlockData} />;
 
-          case 'gallery':
-            return <GalleryBlock key={block.id} data={block.data as GalleryBlockData} />;
-
           case 'features':
+            // If hero block exists on page, features data is rendered as the StatsBar inside HeroBlock
+            if (mainHeroBlock) {
+              return null;
+            }
             return <FeaturesBlock key={block.id} data={block.data as FeaturesBlockData} />;
 
           case 'faq':
             return <FaqBlock key={block.id} data={block.data as FaqBlockData} />;
 
-          case 'testimonials':
-            return <TestimonialsBlock key={block.id} data={block.data as TestimonialsBlockData} />;
-
           case 'team_members':
             return <TeamMembersBlock key={block.id} data={block.data as TeamMembersBlockData} />;
-
-          case 'dynamic-post-feed':
-          case 'dynamic_post_feed':
-            return <DynamicPostFeedBlock key={block.id} data={block.data as DynamicPostFeedBlockData} />;
-
-          case 'activity-slider':
-          case 'activity_slider':
-            // Activity slider is rendered inside HeroBlock, so we don't render it as a standalone block.
-            return null;
 
           case 'profile_tabs':
           default:
@@ -561,3 +582,4 @@ export const BlockRenderer: React.FC<BlockRendererProps> = ({ blocks }) => {
     </>
   );
 };
+
